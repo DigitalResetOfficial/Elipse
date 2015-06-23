@@ -13,6 +13,14 @@ log = open(workspace + "/logs/" + time.strftime("%I:%M:%S") + "-log" +  ".log", 
 if not os.path.exists(workspace + "/workspace"):
 	os.makedirs("workspace")
 	log.write("Created Workspace Directory @ " + time.strftime("%I:%M:%S") + "\n")
+# Load Plugin
+pLoad = open("plugin.json","r")
+pluginClass = json.load(pLoad)
+lplugin = pluginClass['enabledPlugin']
+xplugin = open(workspace + "/plugins/" + lplugin)
+plugin = json.load(xplugin)
+pLoad.close()
+print(plugin['name'] + " " + plugin['version'])
 # File Name
 fName = raw_input("File Name: ")
 # Create The Project
@@ -27,6 +35,12 @@ while inp == 1:
 		log.write("Saved Project " + fName + " @ " + time.strftime("%I:%M:%S") + "\n")
 		project.close()
 		log.close()
+		xplugin.close()
+	elif li == "plugin.function.description":
+		print(plugin['function.description'])
+	elif li == "plugin.function":
+		print(plugin['function'])
+		project.write(plugin['function'])
 	else:
 		project.write(li + "\n")
 		log.write("Wrote line " + "\"" + li + "\" " + "on project " + fName + " @ " + time.strftime("%I:%M:%S") + "\n")
