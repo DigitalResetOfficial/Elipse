@@ -1,0 +1,5 @@
+{
+  "name":"Example Plugin",
+  "version":"1.0"
+  "function":"Hi"
+  "function.description":"Writes Hi into your file."
